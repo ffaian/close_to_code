@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CVD_CloseToCode_Articles" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" dimensionType="STANDARD" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <descriptions defaultDescription="Close To Code Valid Articles"/>
+  <metadata changedAt="2019-05-22 21:28:18.477"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="52"/>
+  <dataSources>
+    <DataSource id="TF_ARTICLES" type="TABLE_FUNCTION">
+      <resourceUri>Applications.CloseToCode.Artifacts.table_functions::TF_ARTICLES</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="EXE_ARTICLES">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="MATERIAL"/>
+        <viewAttribute id="PLANT"/>
+        <viewAttribute id="MATERIAL_T"/>
+        <viewAttribute id="PLANT_T"/>
+        <viewAttribute id="PULL_DAYS"/>
+        <viewAttribute id="ZZREGION"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#TF_ARTICLES">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATERIAL" source="MATERIAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PLANT" source="PLANT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATERIAL_T" source="MATERIAL_T"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PLANT_T" source="PLANT_T"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PULL_DAYS" source="PULL_DAYS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZREGION" source="ZZREGION"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="EXE_ARTICLES">
+    <descriptions/>
+    <attributes>
+      <attribute id="ZZREGION" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZREGION"/>
+        <keyMapping columnObjectName="EXE_ARTICLES" columnName="ZZREGION"/>
+      </attribute>
+      <attribute id="ARTICLE_ID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ARTICLE_ID"/>
+        <keyMapping columnObjectName="EXE_ARTICLES" columnName="MATERIAL"/>
+      </attribute>
+      <attribute id="RSC_ID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RSC_ID"/>
+        <keyMapping columnObjectName="EXE_ARTICLES" columnName="PLANT"/>
+      </attribute>
+      <attribute id="ARTICLE_TXT" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ARTICLE_TXT"/>
+        <keyMapping columnObjectName="EXE_ARTICLES" columnName="MATERIAL_T"/>
+      </attribute>
+      <attribute id="RSC_TXT" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RSC_TXT"/>
+        <keyMapping columnObjectName="EXE_ARTICLES" columnName="PLANT_T"/>
+      </attribute>
+      <attribute id="PULL_DAYS" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PULL_DAYS"/>
+        <keyMapping columnObjectName="EXE_ARTICLES" columnName="PULL_DAYS"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="EXE_ARTICLES" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

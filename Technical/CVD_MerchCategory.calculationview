@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CVD_MerchCategory" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" dimensionType="STANDARD" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <descriptions defaultDescription="Merchandise Category"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="22"/>
+  <dataSources>
+    <DataSource id="Applications.CloseToCode.Artifacts.tables::HT_PullDays_MCAT" type="DATA_BASE_TABLE">
+      <viewAttributes allViewAttributes="true"/>
+      <columnObject schemaName="CLOSE_TO_CODE" columnObjectName="Applications.CloseToCode.Artifacts.tables::HT_PullDays_MCAT"/>
+    </DataSource>
+    <DataSource id="MATL_GROUP_REPORTING" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/system-local.bw.bw2hana.0/calculationviews/MATL_GROUP_REPORTING</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:JoinView" id="MerchCategory_md" cardinality="C1_1" joinOrder="OUTSIDE_IN" joinType="referential">
+      <descriptions>
+        <comment text="Join MerchCategory control table with SAP BW MD"/>
+      </descriptions>
+      <viewAttributes>
+        <viewAttribute id="MATL_GROUP"/>
+        <viewAttribute id="PULL_DAYS"/>
+        <viewAttribute id="0MATL_GROUP___T"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Applications.CloseToCode.Artifacts.tables::HT_PullDays_MCAT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATL_GROUP" source="MATL_GROUP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PULL_DAYS" source="PULL_DAYS"/>
+      </input>
+      <input node="#MATL_GROUP_REPORTING">
+        <mapping xsi:type="Calculation:AttributeMapping" target="0MATL_GROUP___T" source="0MATL_GROUP___T"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATL_GROUP" source="0MATL_GROUP"/>
+      </input>
+      <joinAttribute name="MATL_GROUP"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="MerchCategory_md">
+    <descriptions/>
+    <attributes>
+      <attribute id="MATL_GROUP" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MATL_GROUP"/>
+        <keyMapping columnObjectName="MerchCategory_md" columnName="MATL_GROUP"/>
+      </attribute>
+      <attribute id="PULL_DAYS" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PULL_DAYS"/>
+        <keyMapping columnObjectName="MerchCategory_md" columnName="PULL_DAYS"/>
+      </attribute>
+      <attribute id="MATL_GROUP_TEXT" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Merchandise Category Text"/>
+        <keyMapping columnObjectName="MerchCategory_md" columnName="0MATL_GROUP___T"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="MerchCategory_md" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="165"/>
+        <rectangleSize height="30" width="140"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>
